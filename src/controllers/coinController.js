@@ -19,19 +19,20 @@ const getAssets = async function (req,res){
         await coinModel.deleteMany({})  
         var arr = []
         for(let i = 0 ; i<data.length ; i++){
-            object = {
-                name :data[i].name,
-                symbol : data[i].symbol,
-                marketCapUsd: data[i].marketCapUsd,
-                priceUsd: data[i].priceUsd
+            var coins = await coinModel.findOne({name :data[i].name,symbol : data[i].symbol});    
+            if(!coins){   
+                object = {
+                    name :data[i].name,
+                    symbol : data[i].symbol,
+                    marketCapUsd: data[i].marketCapUsd,
+                    priceUsd: data[i].priceUsd
+                    }
+                arr.push(object)
             }
-            arr.push(object)
 
-            var coins = await coinModel.findOne({name :object.name,symbol : object.symbol});                
         }
-        if(!coins){
-            var coinData = await coinModel.insertMany(arr);
-        }
+        
+        var coinData = await coinModel.insertMany(arr);
         return res.status(200).send({ status :true,message : "success" ,data: data });
         
     } catch (error) {
