@@ -1,0 +1,25 @@
+{
+  "name": "project-block_chain_project-minor",
+  "version": "1.0.0",
+  "description": "block chain project . mini project date - 07/12/2022",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChavanPriya97/project-Block_Chain_Project-minor.git"
+  },
+  "author": "Priyanka Chavan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChavanPriya97/project-Block_Chain_Project-minor/issues"
+  },
+  "homepage": "https://github.com/ChavanPriya97/project-Block_Chain_Project-minor#readme",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.8.0"
+  }
+}
