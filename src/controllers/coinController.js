@@ -27,7 +27,7 @@ const getAssets = async function (req,res){
             }
             arr.push(object)
 
-            var coins = await coinModel.findOne({name :data[i].name,symbol : data[i].symbol});                
+            var coins = await coinModel.findOne({name :object.name,symbol : object.symbol});                
         }
         if(!coins){
             var coinData = await coinModel.insertMany(arr);
