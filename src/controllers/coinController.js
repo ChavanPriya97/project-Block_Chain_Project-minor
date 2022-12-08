@@ -7,9 +7,8 @@ const getAssets = async function (req,res){
         var options = {
             method: 'get',
             url: `https://api.coincap.io/v2/assets`,
-            headers: {
-                Authorization: "Bearer af32d36c-025a-429b-9824-e0f303e1b097",
-            }
+            headers: { Authorization: "Bearer XXXXXXXXXX"}
+
         }
         let assets = await axios(options)
         let data =  assets.data.data
@@ -18,11 +17,20 @@ const getAssets = async function (req,res){
         });
 
         await coinModel.deleteMany({})  
+        var arr = []
         for(let i = 0 ; i<data.length ; i++){
+            object = {
+                name :data[i].name,
+                symbol : data[i].symbol,
+                marketCapUsd: data[i].marketCapUsd,
+                priceUsd: data[i].priceUsd
+            }
+            arr.push(object)
+
             var coins = await coinModel.findOne({name :data[i].name,symbol : data[i].symbol});                
         }
         if(!coins){
-            var coinData = await coinModel.insertMany(data);
+            var coinData = await coinModel.insertMany(arr);
         }
         return res.status(200).send({ status :true,message : "success" ,data: data });
         
